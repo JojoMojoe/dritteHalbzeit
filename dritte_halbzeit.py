@@ -564,15 +564,15 @@ class DritteHalbzeitApp(tk.Tk):
         frame.grid_columnconfigure(0, minsize=COLUMN_WIDTHS["team"])
 
         for col_index, drink in enumerate(DRINK_POINTS, start=1):
-            cell = tk.Frame(frame, bg=DRINK_COLORS[drink], padx=4, pady=4)
+            cell = tk.Frame(frame, bg=DRINK_COLORS[drink], padx=14, pady=4)
             cell.grid(row=0, column=col_index, sticky="nsew")
             frame.grid_columnconfigure(col_index, minsize=COLUMN_WIDTHS["drink"])
 
-            count_var = tk.Label(cell, text="0", bg=DRINK_COLORS[drink], fg="#0d1b33", font=("Arial", 11, "bold"), width=3)
+            count_var = tk.Label(cell, text="0", bg=DRINK_COLORS[drink], fg="#0d1b33", font=("Arial", 11, "bold"), width=4)
             count_var.pack(side="left", padx=(2, 4))
             self.count_labels[(team, drink)] = count_var
 
-            btn = ttk.Button(cell, text="+", style="Primary.TButton", width=3)
+            btn = ttk.Button(cell, text="+", style="Primary.TButton", width=4)
             btn.pack(side="right")
             btn.configure(command=lambda t=team, d=drink: self.book(t, d, +1))
             btn.bind("<Button-3>", lambda event, t=team, d=drink: self.book(t, d, -1))
