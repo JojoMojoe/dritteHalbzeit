@@ -1,23 +1,53 @@
 # Dritte Halbzeit
 
-Start:
+## Start
 
 ```bash
 python dritte_halbzeit.py
 ```
 
-## Dateien
+Die Teams werden aus `_Anmeldungen.txt` gelesen. Die App erzeugt/aktualisiert:
 
-- `_Anmeldungen.txt`: Teamliste, alphabetisch in der GUI sortiert
-- `stand.json`: aktueller Zählerstand
-- `buchungen.csv`: Buchungsprotokoll
-- `index.html`: automatisch erzeugter Live-Stand für SharePoint
-- `FCMG Logo 4 farbig.PNG`: Logo rechts oben in der HTML-Datei
+- `index.html`
+- `stand.json`
+- `buchungen.csv`
 
-## Bedienung
+## GitHub Pages Upload
 
-- Linksklick auf `+`: Getränk +1
-- Rechtsklick auf `+`: Getränk -1
-- `Letzte Buchung rückgängig`: kann mehrfach genutzt werden
+Die App enthält einen timerbasierten GitHub-Push.
 
-Die HTML-Datei wird nach jeder Buchung automatisch neu geschrieben.
+Wichtig: Die App muss aus dem lokal geklonten GitHub-Repository gestartet werden, also aus dem Ordner, in dem auch der versteckte `.git`-Ordner liegt.
+
+Beispiel:
+
+```bash
+git clone https://github.com/DEINNAME/DEINREPO.git
+cd DEINREPO
+python dritte_halbzeit.py
+```
+
+Ablauf:
+
+- Jeder Klick aktualisiert sofort `stand.json`, `buchungen.csv` und `index.html` lokal.
+- Alle 30 Sekunden prüft die App, ob Änderungen vorgemerkt sind.
+- Dann führt sie automatisch aus:
+  - `git add index.html stand.json buchungen.csv`
+  - `git commit -m "Update Dritte Halbzeit"`
+  - `git push`
+
+Wenn die App nicht aus einem Git-Repository gestartet wird, läuft sie trotzdem normal, aber ohne GitHub-Upload.
+
+## Voraussetzungen für Auto-Push
+
+- Git ist installiert.
+- Das Repository wurde lokal geklont.
+- `git push` funktioniert einmalig manuell ohne Rückfrage.
+
+Zum Testen:
+
+```bash
+git status
+git push
+```
+
+Wenn GitHub nach Login fragt, am besten GitHub Desktop oder Git Credential Manager einrichten.

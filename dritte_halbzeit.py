@@ -4,6 +4,8 @@ import csv
 import html
 import json
 import shutil
+import subprocess
+import threading
 import tkinter as tk
 from dataclasses import dataclass
 from datetime import datetime
@@ -16,6 +18,7 @@ DATA_FILE = BASE_DIR / "stand.json"
 LOG_FILE = BASE_DIR / "buchungen.csv"
 HTML_FILE = BASE_DIR / "index.html"
 LOGO_FILE = BASE_DIR / "FCMG Logo 4 farbig.PNG"
+GITHUB_PUSH_INTERVAL_MS = 30_000
 
 DRINK_POINTS: dict[str, int] = {
     "Bier": 2,
@@ -397,6 +400,64 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
     HTML_FILE.write_text(doc, encoding="utf-8")
 
 
+def run_git_command(args: list[str], timeout: int = 20) -> tuple[bool, str]:
+    """Run a git command in the app folder and return success plus output."""
+    try:
+        result = subprocess.run(
+            ["git", *args],
+            cwd=BASE_DIR,
+            text=True,
+            capture_output=True,
+            timeout=timeout,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+    except FileNotFoundError:
+        return False, "Git not installed or in the PATH."
+    except subprocess.TimeoutExpired:
+        return False, "Git command elapse too long. "
+    output = (result.stdout or result.stderr or "").strip()
+    return result.returncode == 0, output
+
+
+def is_git_repository() -> bool:
+    ok, output = run_git_command(["rev-parse", "--is-inside-work-tree"], timeout=5)
+    return ok and output.strip().lower() == "true"
+
+
+def has_git_remote() -> bool:
+    ok, output = run_git_command(["remote"], timeout=5)
+    return ok and bool(output.strip())
+
+
+def has_git_changes() -> bool:
+    ok, output = run_git_command(["status", "--porcelain"], timeout=10)
+    return ok and bool(output.strip())
+
+
+def commit_and_push_to_github() -> tuple[bool, str]:
+    """Commit all local changes and push them to the configured GitHub remote."""
+    if not is_git_repository():
+        return False, "No Git-Repository. App has to be started in git repo. ."
+    if not has_git_remote():
+        return False, "The clone of the repo doesn't work correct. "
+    if not has_git_changes():
+        return True, "No changes for git"
+
+    ok, output = run_git_command(["add", "index.html", "stand.json", "buchungen.csv"], timeout=20)
+    if not ok:
+        return False, f"git add fehlgeschlagen: {output}"
+
+    # Do not fail when there is nothing to commit after add.
+    ok, output = run_git_command(["commit", "-m", "Update Dritte Halbzeit"], timeout=30)
+    if not ok and "nothing to commit" not in output.lower():
+        return False, f"git commit fehlgeschlagen: {output}"
+
+    ok, output = run_git_command(["push"], timeout=60)
+    if not ok:
+        return False, f"git push fehlgeschlagen: {output}"
+    return True, "GitHub aktualisiert."
+
+
 class DritteHalbzeitApp(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
@@ -421,17 +482,25 @@ class DritteHalbzeitApp(tk.Tk):
         self.count_labels: dict[tuple[str, str], tk.Label] = {}
         self.points_labels: dict[str, tk.Label] = {}
         self.row_frames: dict[str, tk.Frame] = {}
+        self.github_dirty = False
+        self.github_push_running = False
+        self.github_enabled = is_git_repository() and has_git_remote()
 
         save_state(self.state)
         write_html(self.state)
         self._build_ui()
         self._refresh_all_rows()
+        self._update_github_status_initial()
+        self._mark_github_dirty()
+        self.after(GITHUB_PUSH_INTERVAL_MS, self._github_push_timer)
 
     def _build_ui(self) -> None:
         top = tk.Frame(self, bg="#f1f5fb", padx=16, pady=12)
         top.pack(fill="x")
         ttk.Label(top, text="Dritte Halbzeit", style="Title.TLabel").pack(side="left")
         self.status_var = tk.StringVar(value="Bereit · HTML wird automatisch aktualisiert")
+        self.github_status_var = tk.StringVar(value="GitHub: wird geprüft …")
+        ttk.Label(top, textvariable=self.github_status_var, style="Status.TLabel").pack(side="right", padx=(18, 0))
         ttk.Label(top, textvariable=self.status_var, style="Status.TLabel").pack(side="right")
 
         header_wrap = tk.Frame(self, bg="#0b3972", padx=0, pady=0)
@@ -550,6 +619,7 @@ class DritteHalbzeitApp(tk.Tk):
     def _persist_and_refresh(self, changed_team: str | None = None) -> None:
         save_state(self.state)
         write_html(self.state)
+        self._mark_github_dirty()
         if changed_team:
             self._refresh_row(changed_team)
         else:
@@ -563,6 +633,40 @@ class DritteHalbzeitApp(tk.Tk):
     def _refresh_all_rows(self) -> None:
         for team in self.teams:
             self._refresh_row(team)
+
+
+    def _update_github_status_initial(self) -> None:
+        if self.github_enabled:
+            self.github_status_var.set("GitHub: bereit · Push alle 30 s bei Änderungen")
+        else:
+            self.github_status_var.set("GitHub: aus · Ordner ist kein geklontes Repo")
+
+    def _mark_github_dirty(self) -> None:
+        if self.github_enabled:
+            self.github_dirty = True
+            self.github_status_var.set("GitHub: Änderung vorgemerkt")
+
+    def _github_push_timer(self) -> None:
+        if self.github_enabled and self.github_dirty and not self.github_push_running:
+            self.github_push_running = True
+            self.github_status_var.set("GitHub: Upload läuft …")
+            thread = threading.Thread(target=self._github_push_worker, daemon=True)
+            thread.start()
+        self.after(GITHUB_PUSH_INTERVAL_MS, self._github_push_timer)
+
+    def _github_push_worker(self) -> None:
+        ok, message = commit_and_push_to_github()
+        self.after(0, lambda: self._github_push_finished(ok, message))
+
+    def _github_push_finished(self, ok: bool, message: str) -> None:
+        self.github_push_running = False
+        if ok:
+            self.github_dirty = False
+            self.github_status_var.set(f"GitHub: {message}")
+        else:
+            # Keep dirty=True so the next timer tries again.
+            self.github_dirty = True
+            self.github_status_var.set(f"GitHub Fehler: {message}")
 
     def open_html(self) -> None:
         import webbrowser
