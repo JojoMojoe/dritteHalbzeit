@@ -4,7 +4,7 @@
     "Radler": 0,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
-    "Schnaps": 1
+    "Schnaps": 0
   },
   "Athletico Promillo": {
     "Bier": 0,
@@ -127,13 +127,13 @@
   },
   "Luibl and Friends": {
     "Bier": 0,
-    "Radler": 2,
-    "Sekt / Wein": 3,
-    "Weinschorle": 2,
+    "Radler": 0,
+    "Sekt / Wein": 0,
+    "Weinschorle": 0,
     "Schnaps": 0
   },
   "Prosecco Damen": {
-    "Bier": 2,
+    "Bier": 0,
     "Radler": 0,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
@@ -168,11 +168,11 @@
     "Schnaps": 0
   },
   "Stubn Stammtisch": {
-    "Bier": 1,
+    "Bier": 0,
     "Radler": 0,
-    "Sekt / Wein": 2,
-    "Weinschorle": 1,
-    "Schnaps": 7
+    "Sekt / Wein": 0,
+    "Weinschorle": 0,
+    "Schnaps": 0
   },
   "Treff und Sicher Gansheim": {
     "Bier": 0,
