@@ -23,7 +23,7 @@ GITHUB_PUSH_INTERVAL_MS = 6_000
 
 DRINK_POINTS: dict[str, int] = {
     "Bier": 2,
-    "Radler": 1,
+    "Daiquiri / Radler": 1,
     "Sekt / Wein": 2,
     "Weinschorle": 2,
     "Schnaps": 1,
@@ -31,18 +31,26 @@ DRINK_POINTS: dict[str, int] = {
 
 DRINK_ICONS: dict[str, str] = {
     "Bier": "🍺",
-    "Radler": "🚲",
-    "Sekt / Wein": "🍷",
+    "Daiquiri / Radler": "🍹 🚲",
+    "Sekt / Wein": "🍾 🍷",
     "Weinschorle": "🥂",
     "Schnaps": "🥃",
 }
 
 DRINK_COLORS: dict[str, str] = {
     "Bier": "#fff3cf",
-    "Radler": "#eaf8df",
+    "Daiquiri / Radler": "#eaf8df",
     "Sekt / Wein": "#f7e8f8",
     "Weinschorle": "#edf8df",
     "Schnaps": "#fff0e4",
+}
+
+DRINK_DESC = {
+    "Bier": "<br>Menge: 0,5 l <br>Alkohol: 5,0 % <br>Konsum: 0,025g <br>Punkte: 2",
+    "Daiquiri / Radler": "<br>Menge: 0,2 / 0,5 l <br>Alkohol:  5,0 / 2,4 % <br>Konsum: 0,012g <br>Punkte: 1",
+    "Sekt / Wein": "<br>Menge: 0,2 l <br>Alkohol: 12,0 % <br>Konsum: 0,024g <br>Punkte: 2",
+    "Weinschorle": "<br>Menge: 0,5 l  <br>Alkohol: 5,0 % <br>Konsum: 0,025g <br>Punkte: 2",
+    "Schnaps": "<br>Menge: 0,02 l <br>Alkohol: 40,0 % <br>Konsum: 0,008g <br>Punkte: 1",
 }
 
 COLUMN_WIDTHS = {
@@ -182,10 +190,17 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
         )
 
     legend_items = "".join(
-        f"<div class='legend-item'><span class='legend-icon'>{DRINK_ICONS[drink]}</span>"
-        f"<div><b>{html.escape(drink)}</b><br>{points} Punkt{'e' if points != 1 else ''}</div></div>"
-        for drink, points in DRINK_POINTS.items()
-    )
+            f"""
+            <div class='legend-item'>
+                <span class='legend-icon'>{DRINK_ICONS[drink]}</span>
+                <div>
+                    <b>{html.escape(drink)}</b>
+                    <small>{DRINK_DESC[drink]}</small>
+                </div>
+            </div>
+            """
+            for drink, points in DRINK_POINTS.items()
+        )
 
     doc = f"""<!doctype html>
 <html lang="de">
@@ -536,7 +551,7 @@ class DritteHalbzeitApp(tk.Tk):
 
     def _make_header(self, parent: tk.Frame) -> None:
         cells = [("Team", COLUMN_WIDTHS["team"])]
-        cells.extend((f"{DRINK_ICONS[d]} {d}\n({p} P.)", COLUMN_WIDTHS["drink"]) for d, p in DRINK_POINTS.items())
+        cells.extend((f"{d}\n{p} P.", COLUMN_WIDTHS["drink"]) for d, p in DRINK_POINTS.items())
         cells.append(("Gesamt\nPunkte", COLUMN_WIDTHS["points"]))
         for column, (text, width) in enumerate(cells):
             label = tk.Label(
