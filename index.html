@@ -139,33 +139,58 @@
       font-weight: 950;
       box-shadow: 0 4px 10px rgba(4,31,67,.24);
     }
-    .legend {
-      margin-top: 22px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px 20px;
-      background: linear-gradient(180deg, #ffffff, #f6f9fd);
-    }
-    .legend h2 { margin: 0 0 14px; color: var(--blue-dark); }
-    .legend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 12px; }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      border: 1px solid #dce6f3;
-      border-radius: 13px;
-      background: #fff;
-    }
-    .legend-icon { font-size: 1.8rem; }
-    .status {
-      margin-top: 20px;
-      background: linear-gradient(90deg, #052f67, #063b7a);
-      color: #fff;
-      border-radius: 12px;
-      padding: 12px 16px;
-      font-weight: 700;
-    }
+    .legend{
+            margin-top:35px;
+            padding:22px;
+            border-radius:14px;
+            background:#eef5ff;
+            border:1px solid #c8daf7;
+        }
+
+        .legend h2{
+            margin-top:0;
+            color:#123d7a;
+        }
+
+        .legend-text{
+            margin-bottom:18px;
+        }
+
+        .legend-table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:10px;
+        }
+
+        .legend-table th{
+            background:#123d7a;
+            color:white;
+            padding:10px;
+        }
+
+        .legend-table td{
+            padding:9px;
+            border-bottom:1px solid #dde7f5;
+        }
+
+        .legend-table tr:nth-child(even){
+            background:#f8fbff;
+        }
+
+        .badge{
+            display:inline-block;
+            background:#123d7a;
+            color:white;
+            padding:4px 12px;
+            border-radius:20px;
+            font-weight:bold;
+        }
+
+        .legend-note{
+            margin-top:18px;
+            color:#555;
+            font-size:.95em;
+        }
     @media (max-width: 760px) {
       body { padding: 10px; }
       .page { padding: 16px; border-radius: 14px; }
@@ -205,7 +230,7 @@
       <div class="legend-grid"><div class='legend-item'><span class='legend-icon'>🍺</span><div><b>Bier</b><br>2 Punkte</div></div><div class='legend-item'><span class='legend-icon'>🚲</span><div><b>Radler</b><br>1 Punkt</div></div><div class='legend-item'><span class='legend-icon'>🍷</span><div><b>Sekt / Wein</b><br>2 Punkte</div></div><div class='legend-item'><span class='legend-icon'>🥂</span><div><b>Weinschorle</b><br>2 Punkte</div></div><div class='legend-item'><span class='legend-icon'>🥃</span><div><b>Schnaps</b><br>1 Punkt</div></div></div>
     </section>
 
-    <div class="status">Stand: 06.07.2026 18:18:15 · Aktualisierung automatisch alle 10 Sekunden</div>
+    <div class="status">Stand: 06.07.2026 18:23:42 · Aktualisierung automatisch alle 10 Sekunden</div>
   </div>
 </body>
 </html>
