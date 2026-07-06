@@ -240,9 +240,11 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
     }}
     header {{
       position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
       min-height: 145px;
       margin-bottom: 22px;
-      padding-right: 190px;
     }}
     h1 {{
       margin: 0;
@@ -257,14 +259,28 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
       font-size: 1.15rem;
       font-weight: 700;
     }}
-    .redline {{ width: 105px; height: 7px; background: var(--red); border-radius: 99px; margin-top: 14px; }}
-    .logo {{
-      position: absolute;
-      right: 12px;
-      top: 4px;
-      width: 118px;
+    .redline {{ 
+        width: 105px; 
+        height: 7px; 
+        background: var(--red); 
+        border-radius: 99px; 
+        margin: 14px auto 0; 
+    }}
+    .qr-code {{
+      width: 120px;
       height: auto;
       object-fit: contain;
+      flex-shrink: 0;
+    }}
+    .title {{
+      flex: 1;
+      text-align: center;
+    }}
+    .logo {{
+       width: 120px;
+       height: auto;
+       object-fit: contain;
+       flex-shrink: 0;
     }}
     .table-card {{
       overflow: auto;
@@ -351,9 +367,14 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
       background: linear-gradient(180deg, #ffffff, #f6f9fd);
     }}
     .legend h2 {{ margin: 0 0 14px; color: var(--blue-dark); }}
-    .legend-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 12px; }}
+    .legend-grid {{ 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+        gap: 12px; 
+    }}
     .legend-item {{
-      display: flex;
+      display: grid;
+      grid-template-columns: 40px 1fr;
       align-items: center;
       gap: 12px;
       padding: 12px;
@@ -361,7 +382,11 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
       border-radius: 13px;
       background: #fff;
     }}
-    .legend-icon {{ font-size: 1.8rem; }}
+    .legend-icon {{ 
+        width: 40px;
+        text-align: center;
+        font-size: 1.8rem;
+    }}
     .status {{
       margin-top: 20px;
       background: linear-gradient(90deg, #052f67, #063b7a);
@@ -381,10 +406,13 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
 <body>
   <div class="page">
     <header>
-      {logo_html}
-      <h1>Dritte Halbzeit</h1>
-      <div class="redline"></div>
-      <div class="subtitle">Aktueller Stand der Mannschaften</div>
+        <img class="qr-code" src="qrCode.jpeg" alt="QR-Code">
+        <div class="title">
+            <h1>Dritte Halbzeit</h1>
+            <div class="redline"></div>
+            <div class="subtitle">Aktueller Stand der Mannschaften</div>
+        </div>
+        <img class="logo" src="FCMG Logo 4 farbig.PNG" alt="FCMG Logo">
     </header>
 
     <div class="table-card">
