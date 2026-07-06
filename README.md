@@ -1,53 +1,153 @@
 # Dritte Halbzeit
 
-## Start
+## Übersicht
 
-```bash
-python dritte_halbzeit.py
-```
+**Dritte Halbzeit** ist eine Python-Anwendung zur Verwaltung der
+Challenge *„Dritte Halbzeit"*.
 
-Die Teams werden aus `_Anmeldungen.txt` gelesen. Die App erzeugt/aktualisiert:
+Das Barpersonal erfasst die ausgegebenen Getränke über eine einfache
+GUI. Aus den Buchungen wird automatisch eine HTML-Rangliste erzeugt, die
+über GitHub Pages veröffentlicht werden kann.
 
-- `index.html`
-- `stand.json`
-- `buchungen.csv`
+------------------------------------------------------------------------
 
-## GitHub Pages Upload
+# Funktionen
 
-Die App enthält einen timerbasierten GitHub-Push.
+-   Einfache GUI mit `+`-Buttons je Getränk und Mannschaft
+-   Automatische Berechnung der Punkte
+-   Automatische Sortierung nach Gesamtpunkten
+-   HTML-Rangliste im modernen Design
+-   Rückgängig-Funktion für beliebig viele Buchungen
+-   Automatische Speicherung aller Daten
+-   Optionaler automatischer GitHub-Push im Hintergrund
 
-Wichtig: Die App muss aus dem lokal geklonten GitHub-Repository gestartet werden, also aus dem Ordner, in dem auch der versteckte `.git`-Ordner liegt.
+------------------------------------------------------------------------
+
+# Projektstruktur
+
+  --------------------------------------------------------------------------
+  Datei                      Beschreibung
+  -------------------------- -----------------------------------------------
+  `dritte_halbzeit.py`       Hauptprogramm mit GUI, Datenverwaltung und
+                             HTML-Erzeugung
+
+  `_Anmeldungen.txt`         Mannschaften (eine Mannschaft pro Zeile)
+
+  `stand.json`               Aktueller Spielstand
+
+  `buchungen.csv`            Protokoll aller Buchungen
+
+  `index.html`               Automatisch erzeugte Rangliste
+
+  `FCMG Logo 4 farbig.PNG`   Vereinslogo (rechts oben in der HTML)
+
+  `qrCode.jpeg`              QR-Code (links oben in der HTML)
+
+  `README.md`                Projektdokumentation
+  --------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+# Bedienungsanleitung
+
+## Mannschaften anlegen
+
+Die Datei `_Anmeldungen.txt` bearbeiten.
 
 Beispiel:
 
-```bash
-git clone https://github.com/DEINNAME/DEINREPO.git
-cd DEINREPO
+``` text
+FC Muster
+Die Zapfmeister
+Team Bier
+```
+
+Jede Mannschaft steht in einer eigenen Zeile.
+
+------------------------------------------------------------------------
+
+## Programm starten
+
+``` bash
 python dritte_halbzeit.py
 ```
 
-Ablauf:
+------------------------------------------------------------------------
 
-- Jeder Klick aktualisiert sofort `stand.json`, `buchungen.csv` und `index.html` lokal.
-- Alle 30 Sekunden prüft die App, ob Änderungen vorgemerkt sind.
-- Dann führt sie automatisch aus:
-  - `git add index.html stand.json buchungen.csv`
-  - `git commit -m "Update Dritte Halbzeit"`
-  - `git push`
+## Getränke buchen
 
-Wenn die App nicht aus einem Git-Repository gestartet wird, läuft sie trotzdem normal, aber ohne GitHub-Upload.
+-   Linksklick auf **+** → Getränk buchen
+-   Rechtsklick auf **+** → Buchung entfernen
+-   Änderungen werden sofort gespeichert.
 
-## Voraussetzungen für Auto-Push
+------------------------------------------------------------------------
 
-- Git ist installiert.
-- Das Repository wurde lokal geklont.
-- `git push` funktioniert einmalig manuell ohne Rückfrage.
+## Buchung rückgängig
 
-Zum Testen:
+Über den Button
 
-```bash
-git status
-git push
-```
+> **↶ Letzte Buchung rückgängig**
 
-Wenn GitHub nach Login fragt, am besten GitHub Desktop oder Git Credential Manager einrichten.
+kann beliebig oft die zuletzt durchgeführte Buchung zurückgenommen
+werden.
+
+------------------------------------------------------------------------
+
+## HTML
+
+Nach jeder Änderung werden automatisch aktualisiert:
+
+-   `stand.json`
+-   `buchungen.csv`
+-   `index.html`
+
+Die HTML-Seite aktualisiert sich zusätzlich selbst regelmäßig.
+
+------------------------------------------------------------------------
+
+# GitHub Pages
+
+Empfohlener Ablauf:
+
+1.  Repository lokal klonen.
+2.  Projekt in den Repository-Ordner legen.
+3.  GitHub Pages aktivieren.
+4.  Das Programm übernimmt anschließend den automatischen Push.
+
+------------------------------------------------------------------------
+
+# Punktewertung
+
+  Getränk                Punkte
+  -------------------- --------
+  Bier                        2
+  Daiquiri / Radler           1
+  Wein / Weinschorle          2
+  Sekt                        2
+  Schnaps                     1
+
+------------------------------------------------------------------------
+
+# Datensicherung
+
+Alle relevanten Daten befinden sich in:
+
+-   `stand.json`
+-   `buchungen.csv`
+
+Diese beiden Dateien reichen aus, um den aktuellen Stand
+wiederherzustellen.
+
+------------------------------------------------------------------------
+
+# Voraussetzungen
+
+-   Python 3.11 oder neuer
+-   Tkinter
+-   Git (optional, für automatischen Upload)
+
+------------------------------------------------------------------------
+
+# Lizenz
+
+Erstellt für die Challenge **Dritte Halbzeit**.
