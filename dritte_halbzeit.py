@@ -18,7 +18,8 @@ DATA_FILE = BASE_DIR / "stand.json"
 LOG_FILE = BASE_DIR / "buchungen.csv"
 HTML_FILE = BASE_DIR / "index.html"
 LOGO_FILE = BASE_DIR / "FCMG Logo 4 farbig.PNG"
-GITHUB_PUSH_INTERVAL_MS = 30_000
+HTML_UPDATE_INTERVAL_S = 10
+GITHUB_PUSH_INTERVAL_MS = 6_000
 
 DRINK_POINTS: dict[str, int] = {
     "Bier": 2,
@@ -191,7 +192,7 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="5">
+  <meta http-equiv="refresh" content="{str(HTML_UPDATE_INTERVAL_S)}">
   <title>Dritte Halbzeit</title>
   <style>
     :root {{
@@ -383,7 +384,7 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
           <col class="drink-col">
           <col class="drink-col">
         </colgroup>
-        <thead><tr><th>#</th><th>Team</th><th>Punkte<br><small>Gesamt + Abstand</small></th>{drink_headers}</tr></thead>
+        <thead><tr><th>#</th><th>Team</th><th>Punkte<br><small>Gesamt</small></th>{drink_headers}</tr></thead>
         <tbody>{''.join(rows)}</tbody>
       </table>
     </div>
@@ -393,7 +394,7 @@ def write_html(state: dict[str, dict[str, int]]) -> None:
       <div class="legend-grid">{legend_items}</div>
     </section>
 
-    <div class="status">Stand: {html.escape(now)} · Aktualisierung automatisch alle 5 Sekunden</div>
+    <div class="status">Stand: {html.escape(now)} · Aktualisierung automatisch alle {str(HTML_UPDATE_INTERVAL_S)} Sekunden</div>
   </div>
 </body>
 </html>"""
