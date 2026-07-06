@@ -165,7 +165,8 @@
     .legend h2 { margin: 0 0 14px; color: var(--blue-dark); }
     .legend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 12px; }
     .legend-item {
-      display: flex;
+      display: grid;
+      grid-template-columns: 70px 1fr;
       align-items: center;
       gap: 12px;
       padding: 12px;
@@ -173,7 +174,11 @@
       border-radius: 13px;
       background: #fff;
     }
-    .legend-icon { font-size: 1.8rem; }
+    .legend-icon { 
+        width: 70px;
+        text-align: center;
+        font-size: 1.8rem;
+    }
     .status {
       margin-top: 20px;
       background: linear-gradient(90deg, #052f67, #063b7a);
@@ -264,7 +269,7 @@
             </div>
     </section>
 
-    <div class="status">Stand: 06.07.2026 19:15:05 · Aktualisierung automatisch alle 10 Sekunden</div>
+    <div class="status">Stand: 06.07.2026 19:18:50 · Aktualisierung automatisch alle 10 Sekunden</div>
   </div>
 </body>
 </html>
