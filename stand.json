@@ -136,13 +136,13 @@
     "Bier": 0,
     "Daiquiri / Radler": 0,
     "Sekt / Wein": 0,
-    "Weinschorle": 0,
+    "Weinschorle": 2,
     "Schnaps": 0
   },
   "Prosecco Damen": {
     "Bier": 0,
     "Daiquiri / Radler": 0,
-    "Sekt / Wein": 0,
+    "Sekt / Wein": 1,
     "Weinschorle": 0,
     "Schnaps": 0
   },
@@ -150,7 +150,7 @@
     "Bier": 0,
     "Daiquiri / Radler": 1,
     "Sekt / Wein": 0,
-    "Weinschorle": 0,
+    "Weinschorle": 1,
     "Schnaps": 0
   },
   "SC Loch": {
