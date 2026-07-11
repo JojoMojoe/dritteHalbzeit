@@ -36,7 +36,7 @@
   },
   "Cream": {
     "Bier": 0,
-    "Daiquiri / Radler": 0,
+    "Daiquiri / Radler": 1,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
     "Schnaps": 0
@@ -106,7 +106,7 @@
   },
   "Jugendtrainer FCMG": {
     "Bier": 0,
-    "Daiquiri / Radler": 1,
+    "Daiquiri / Radler": 2,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
     "Schnaps": 0
