@@ -70,7 +70,7 @@
     "Schnaps": 0
   },
   "Eintracht Prügel": {
-    "Bier": 8,
+    "Bier": 5,
     "Daiquiri / Radler": 0,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
@@ -161,9 +161,9 @@
     "Schnaps": 0
   },
   "Stammtisch Gansheim": {
-    "Bier": 20,
+    "Bier": 22,
     "Daiquiri / Radler": 6,
-    "Sekt / Wein": 0,
+    "Sekt / Wein": 1,
     "Weinschorle": 0,
     "Schnaps": 0
   },
