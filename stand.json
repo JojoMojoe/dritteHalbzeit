@@ -39,7 +39,7 @@
     "Daiquiri / Radler": 14,
     "Sekt / Wein": 5,
     "Weinschorle": 0,
-    "Schnaps": 209
+    "Schnaps": 224
   },
   "Die Elfmeter Queens": {
     "Bier": 0,
@@ -99,7 +99,7 @@
   },
   "Goaßbusters": {
     "Bier": 18,
-    "Daiquiri / Radler": 10,
+    "Daiquiri / Radler": 15,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
     "Schnaps": 0
@@ -112,7 +112,7 @@
     "Schnaps": 0
   },
   "Jugendtrainer FCMG": {
-    "Bier": 6,
+    "Bier": 7,
     "Daiquiri / Radler": 6,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
@@ -161,18 +161,18 @@
     "Schnaps": 0
   },
   "Stammtisch Gansheim": {
-    "Bier": 54,
-    "Daiquiri / Radler": 32,
-    "Sekt / Wein": 13,
+    "Bier": 60,
+    "Daiquiri / Radler": 38,
+    "Sekt / Wein": 14,
     "Weinschorle": 3,
     "Schnaps": 8
   },
   "Stubn Stammtisch": {
-    "Bier": 32,
+    "Bier": 33,
     "Daiquiri / Radler": 9,
     "Sekt / Wein": 3,
     "Weinschorle": 0,
-    "Schnaps": 77
+    "Schnaps": 90
   },
   "Treff und Sicher Gansheim": {
     "Bier": 0,
