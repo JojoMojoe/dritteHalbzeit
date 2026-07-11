@@ -16,7 +16,7 @@
   "Bauwogen Biercelona": {
     "Bier": 17,
     "Daiquiri / Radler": 2,
-    "Sekt / Wein": 0,
+    "Sekt / Wein": 1,
     "Weinschorle": 0,
     "Schnaps": 10
   },
@@ -161,7 +161,7 @@
     "Schnaps": 0
   },
   "Stubn Stammtisch": {
-    "Bier": 12,
+    "Bier": 13,
     "Daiquiri / Radler": 2,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
