@@ -69,6 +69,13 @@
     "Weinschorle": 0,
     "Schnaps": 0
   },
+  "Eintracht Prügel": {
+    "Bier": 0,
+    "Daiquiri / Radler": 0,
+    "Sekt / Wein": 0,
+    "Weinschorle": 0,
+    "Schnaps": 0
+  },
   "FC Fehlschuss 04": {
     "Bier": 0,
     "Daiquiri / Radler": 1,
@@ -154,7 +161,7 @@
     "Schnaps": 0
   },
   "Stammtisch Gansheim": {
-    "Bier": 19,
+    "Bier": 20,
     "Daiquiri / Radler": 6,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
