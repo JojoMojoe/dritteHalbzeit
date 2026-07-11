@@ -35,9 +35,9 @@
     "Schnaps": 0
   },
   "Cream": {
-    "Bier": 0,
+    "Bier": 1,
     "Daiquiri / Radler": 1,
-    "Sekt / Wein": 0,
+    "Sekt / Wein": 1,
     "Weinschorle": 0,
     "Schnaps": 0
   },
@@ -134,7 +134,7 @@
   },
   "Prosecco Damen": {
     "Bier": 1,
-    "Daiquiri / Radler": 1,
+    "Daiquiri / Radler": 2,
     "Sekt / Wein": 1,
     "Weinschorle": 0,
     "Schnaps": 0
