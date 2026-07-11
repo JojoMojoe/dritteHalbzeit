@@ -134,7 +134,7 @@
   },
   "Prosecco Damen": {
     "Bier": 1,
-    "Daiquiri / Radler": 2,
+    "Daiquiri / Radler": 3,
     "Sekt / Wein": 1,
     "Weinschorle": 0,
     "Schnaps": 0
@@ -154,7 +154,7 @@
     "Schnaps": 0
   },
   "Stammtisch Gansheim": {
-    "Bier": 16,
+    "Bier": 17,
     "Daiquiri / Radler": 4,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
