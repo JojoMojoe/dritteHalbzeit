@@ -129,7 +129,7 @@
     "Bier": 0,
     "Daiquiri / Radler": 0,
     "Sekt / Wein": 0,
-    "Weinschorle": 2,
+    "Weinschorle": 0,
     "Schnaps": 0
   },
   "Prosecco Damen": {
@@ -163,7 +163,7 @@
   "Stubn Stammtisch": {
     "Bier": 0,
     "Daiquiri / Radler": 0,
-    "Sekt / Wein": 2,
+    "Sekt / Wein": 0,
     "Weinschorle": 0,
     "Schnaps": 0
   },
