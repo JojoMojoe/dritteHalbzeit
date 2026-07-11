@@ -135,7 +135,7 @@
   "Prosecco Damen": {
     "Bier": 0,
     "Daiquiri / Radler": 0,
-    "Sekt / Wein": 1,
+    "Sekt / Wein": 0,
     "Weinschorle": 0,
     "Schnaps": 0
   },
@@ -143,7 +143,7 @@
     "Bier": 0,
     "Daiquiri / Radler": 0,
     "Sekt / Wein": 0,
-    "Weinschorle": 1,
+    "Weinschorle": 0,
     "Schnaps": 0
   },
   "Schuss mit lustig": {
@@ -151,21 +151,21 @@
     "Daiquiri / Radler": 0,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
-    "Schnaps": 1
+    "Schnaps": 0
   },
   "Stammtisch Gansheim": {
     "Bier": 0,
     "Daiquiri / Radler": 0,
     "Sekt / Wein": 0,
     "Weinschorle": 0,
-    "Schnaps": 1
+    "Schnaps": 0
   },
   "Stubn Stammtisch": {
-    "Bier": 4,
+    "Bier": 0,
     "Daiquiri / Radler": 0,
     "Sekt / Wein": 2,
     "Weinschorle": 0,
-    "Schnaps": 1
+    "Schnaps": 0
   },
   "Treff und Sicher Gansheim": {
     "Bier": 0,
